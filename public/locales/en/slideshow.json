@@ -1,0 +1,16 @@
+{
+  "slides": {
+    "slide1": {
+      "title": "Naturalness and Harmony in Aesthetics",
+      "desc": "We are here to help you achieve the harmony you dream of in your face and body aesthetics without compromising naturalness. Get to know our personalized, safe and modern approach.",
+      "btnText": "What We Do ?",
+      "btnUrl": "/about"
+    },
+    "slide2": {
+      "title": "Your Beauty is Unique",
+      "desc": "Every patient's expectations and anatomy are different. We are with you with our personalized treatment plans that aim for the most accurate and natural result for you.",
+      "btnText": "Explore",
+      "btnUrl": "/surgeries"
+    }
+  }
+}

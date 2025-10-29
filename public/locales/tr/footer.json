@@ -1,0 +1,47 @@
+{
+  "logo": {
+    "alt": "Logo"
+  },
+  "sections": {
+    "about": {
+      "title": "Op. Dr. Mahmut Ulvi Kayalı",
+      "links": {
+        "about": "Hakkımızda",
+        "services": "Ameliyatlar",
+        "blog": "Blog",
+        "contact": "İletişim"
+      }
+    },
+    "services": {
+      "title": "Ameliyatlar"
+    },
+    "policies": {
+      "title": "Politikalar",
+      "links": {
+        "privacy": "Kişisel Verilerin İşlenmesine İlişkin Kurumsal Genel Aydınlatma Metni",
+        "cookies": "Çerez Politikası",
+        "dataRequest": "Veri Sorumlusuna Başvuru Formu"
+      }
+    },
+    "contact": {
+      "title": "İletişim",
+      "address": {
+        "line1": "Bulvar ofis, Fener Mah. 1971 Sok.",
+        "line2": "No: 36, D Blok, Daire 5",
+        "line3": "Muratpaşa / Antalya / TÜRKİYE"
+      },
+      "phones": {
+        "office": "+90 242 322 02 12",
+        "mobile": "+90 555 052 02 12"
+      },
+      "email": "info@mahmutulvikayali.com"
+    }
+  },
+  "socialMedia": {
+    "instagram": "Instagram"
+  },
+  "bottom": {
+    "copyright": "2025 © | Tüm Hakları Saklıdır",
+    "createdBy": "Created by Nuans Agency"
+  }
+}

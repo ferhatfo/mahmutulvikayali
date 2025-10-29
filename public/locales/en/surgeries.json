@@ -1,0 +1,10 @@
+{
+  "sidebar": {
+    "title": "All Surgeries",
+    "consultation": {
+      "title": "Free Consultation",
+      "description": "Consult with our expert team for personalized solutions",
+      "button": "Get Appointment"
+    }
+  }
+}

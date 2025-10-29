@@ -1,0 +1,39 @@
+{
+  "metadata": {
+    "title": "Contact - Op. Dr. Mahmut Ulvi Kayalı",
+    "description": "Get in Touch With Us"
+  },
+  "header": {
+    "subtitle": "Contact",
+    "title": "Get in Touch With Us"
+  },
+  "contactInfo": {
+    "title": "Contact Information",
+    "phone": "Phone",
+    "phoneNumbers": {
+      "mobile": "+90 555 052 02 12",
+      "office": "(0242) 322 02 12"
+    },
+    "email": "Email",
+    "emailAddress": "info@mahmutulvikayali.com",
+    "address": "Address",
+    "addressLines": [
+      "BULVAR OFIS, Fener Mah. 1971 Sok.",
+      "No: 36, D Blok, Daire 5",
+      "Muratpaşa / Antalya / TURKEY"
+    ],
+    "socialMedia": "Social Media"
+  },
+  "contactForm": {
+    "title": "Leave Us a Message",
+    "subtitle": "Contact us for all your opinions and suggestions",
+    "form": {
+      "name": "Full Name",
+      "phone": "Your Phone Number",
+      "email": "Your Email Address",
+      "subject": "Subject Title",
+      "message": "Your Message",
+      "submit": "Send"
+    }
+  }
+}

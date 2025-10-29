@@ -1,0 +1,79 @@
+{
+  "metadata": {
+    "title": "Hakkımızda - Op. Dr. Mahmut Ulvi Kayalı",
+    "description": "Biz kimiz, ne yaparız?"
+  },
+  "header": {
+    "subtitle": "Hakkımızda",
+    "title": "Op. Dr. Mahmut Ulvi Kayalı"
+  },
+  "doctorInfo": {
+    "specialty": "Uzmanlık alanı",
+    "academicTitle": "Akademik Ünvanı",
+    "languages": "Yabancı diller",
+    "qualifications": "Bilimsel Kuruluşlara ait yeterlilik",
+    "education": "Eğitim",
+    "workExperience": "Çalıştığı Kurumlar",
+    "memberships": "Üyesi olduğu dernekler",
+    "specialtyValue": "Plastik, Rekonstrüktif ve Estetik Cerrahi",
+    "academicTitleValue": "Operatör Doktor",
+    "languagesValue": "İngilizce, Rusça",
+    "qualificationsList": {
+      "ebopras": "Avrupa Plastik Cerrahi Derneği Board'u (EBOPRAS) yeterlilik diploması (2010); Sözlü değerlendirme (2010, Bern, İsviçre);",
+      "writtenExam": "Yazılı Sınav (2008, Brüksel, Belçika);",
+      "microsurgery": "Şişli Etfal Mikrocerrahi Derneği Mikrocerrahi Eğitim Sertifikası (2006)."
+    },
+    "educationList": {
+      "residency": "05/2002 – 09/2008 Şişli Etfal Eğitim ve Araştırma Hastanesi, Plastik Rekonstrüktif ve Estetik cerrahi asistanı.",
+      "medicalSchool": "09/1994 – 08/2001 Marmara Üniversitesi İngilizce Tıp Fakültesi."
+    },
+    "workExperienceList": {
+      "current": "2014 – halen Özel Op. Dr. Mahmut Ulvi Kayalı Muayenehanesi",
+      "medstar": "2013 – 2014 Medstar Topçular Antalya Özel Hastanesi",
+      "medicalPark": "2011 – 2013 Medikal Park Antalya Özel Hastanesi",
+      "stateService": "09/2009 – 05/2011 Devlet Hizmet Yükümlülüğü görevi Isparta Devlet Hastanesi, Plastik Rekonstrüktif ve Estetik Cerrahi Uzmanı",
+      "demiderm": "10/2008 – 10/2009 Demiderm Güzellik Merkezi, Plastik Rekonstrüktif ve Estetik Cerrahi Uzmanı",
+      "military": "10/2008 – 09/2009 İzmir Asker Hastanesi, Plastik Rekonstrüktif ve Estetik Cerrahi Uzmanı",
+      "training": "2008, Şişli Etfal Eğitim ve Araştırma Hastanesi Plastik ve Rekonstrüktif Cerrahi Uzmanı"
+    },
+    "membershipsList": {
+      "ebopras": "EBOPRAS Fellow",
+      "turkish": "Türk Plastik Rekonstrüktif ve Estetik Cerrahi Derneği",
+      "microsurgery": "Şişli Etfal Mikrocerrahi Derneği",
+      "tema": "Tema Derneği"
+    }
+  },
+  "publications": {
+    "title": "Yayınlar",
+    "list": {
+      "pub1": "1. Turgut G, Kayalı MU, Köse O, Baş L. \"Repair of a wide lower extremity defect with cross-leg free transfer of latissimus dorsi and serratus anterior combined flap: a case report. Strategies Trauma Limb Reconstr\". 2010 Dec; 5(3):155-8. Epub 2010 Sep 18.",
+      "pub2": "2. Karsidag S, Özkaya Ö, Kayalı MU, Doğan H, Kaur AC, Ugurlu K. \"Preliminary study on durability of nail as xenograft\". J Craniofac Surg. 2010 Nov; 21(6):1843-7.",
+      "pub3": "3. \"A retrospective study on the epidemiology and treatment of maxillofacial fractures\". Ozkaya O, Turgut G, KayalI MU, Uğurlu K, Kuran I, Baş L. \"Ulus Travma Acil Cerrahi Derg\", 2009 May; 15(3).",
+      "pub4": "4. Tatlidede S, Turgut G, Gönen E, Kayali MU, Baş L. \"Stereolithographic volume evaluation of healing and shaping after rhinoplasty operations\". J Craniofac Surg. 2009 Jul; 20(4):1082-5.",
+      "pub5": "5. Turgut G, Ozkaya O, Kayali MU, Tatlidede S, Hüthüt I, Baş L. \"Lower Lip Reconstruction With Local Neuromusculocutaneous Advancement Flap\". J Plast Reconstr Aesthet Surg. 2009 Sep; 62(9):1196-201. Epub 2008 Nov 22.",
+      "pub6": "6. Turgut G, Kayali MU, Soydan AT, Gündüz O, Salman S, Oktar F, Baş L. \"Biomechanical Comparison Of A New Technique Of Mandibular Angle Fractures: Biplanar And Bicortical Superior Proximal 3 Holes And Bicortical Inferior Plate Fixation\". J Craniofac Surg. 2008 Mar; 19(2):428-32. Erratum in: J Craniofac Surg. 2008 May; 19(3):871.",
+      "pub7": "7. Semra KARŞIDAĞ, Mahmut Ulvi KAYALI, Arzu ÖZCAN, Kemal UĞURLU, Leyla TÜRKOĞLU KILINÇ, Lütfü BAŞ. \"Bilateral Medial Uyluk Perforatör Flebi Ile Fournier Gangreni Onarımı\". Turk Plast Surg. Cilt 16, Sayı 3 (2008).",
+      "pub8": "8. Ali Tufan SOYDAN, Mahmut Ulvi KAYALI, Gürsel TURGUT, Özay ÖZKAYA, Lütfü BAŞ. \"Alt Ekstremite Malıgn Melanom Olgularında Nadir Görülen Bir Durum; Popliteal Fossa Metastazı Ve Diseksiyonu; Olgu Sunumu\". Turk Plast Surg. Cilt 16, Sayı 3 (2008).",
+      "pub9": "9. Ayşin Karasoy, Mahmut Ulvi Kayalı, Özay Özkaya, Damlanur Sakız, Lütfü Baş. \"Mixed Tubulopapillary Hidroadenoma And Syringocystadenoma Papilliferum Of The Thigh Occuring On Lentiginous Hyperplasia\". ŞEEAH Dergisi."
+    }
+  },
+  "presentations": {
+    "title": "Poster ve Bildiriler",
+    "list": {
+      "section1": "20-23 Eylül 2006 Türk Plasti̇k Rekonstrüktif Ve Estetik Cerrahii Kongresi",
+      "presentation1": "1. \"Fasya Ve Amnion Zarına Sarılmış Insan Tırnağının Fare Sırtına Uygulanması: Deneysel Çalışma\". S. Karşıdağ, M. U. Kayalı, Ö. Özkaya, K. Uğurlu, H. Doğan, A. C. Kaur, U. Tosun, L. Baş",
+      "presentation2": "2. \"Burundaki Iyileşme Ve Şekillenmenin Stereolitografik Olarak Değerlendirilmesi\". S. Tatlıdede, G. Turgut, E. Gönen, M.U. Kayalı, L. Baş.",
+      "presentation3": "3. \"Geniş Krus Ve Ayak Defektlerinin Örtümünde Karşi Bacak Pediküllü Kombine Latissimus Dorsi Ve Serratus Anterior Flebi - Vaka Sunumu\". Gürsel Turgut, Mahmut Ulvi Kayali, Özay Özkaya, Lütfü Baş.",
+      "presentation4": "4. \"Mandibuler Fraktürlerde Bikortikal Dual Miniplak İle Mandibula Fraktür Onarimlarinin Koyun Çenesinde Biyomekanik Değerlendirilmesi\". Gürsel Turgut, Mahmut Ulvi Kayali, Tufan Soydan, Oğuzhan Gündüz, Serdar Salman, Faik Oktar, Lütfü Baş.",
+      "presentation5": "5. \"Brakiyel Arter Onarimlarinin Doppler Usg İle Değerlendirilmesi\". Ayşin Karasoy Yeşilada, Özay Özkaya, Mahmut Ulvi Kayali, Ahmet Mesrur Halefoğlu, Evren Şen, Lütfü Baş.",
+      "presentation6": "6. \"Syringokistadenoma Papilliferrum Ve Mikst Papillohidroadenom Birlikteliği Olgu Sunumu\". Ayşin Karasoy Yeşilada, Mahmut Ulvi Kayali, Özay Özkaya, Damlanur Sakiz, Lütfü Baş.",
+      "section2": "17-20 EKİM 2007 28. TÜRK PLASTİK REKONSTRÜKTİF VE ESTETİK CERRAHİ KONGRESİ",
+      "presentation7": "1. \"İnsan Isiriği Sonucu Önkolda Nekrotizan Fasiit Ve Başparmak Total Nekrozu\". Mahmut Kayali, Serdar Bora Bayraktaroğlu, Nebil Yeşiloğlu, Özay Özkaya, Kemal Uğurlu, Lütfü Baş.",
+      "presentation8": "2. \"Keloid Tedavisinde Interferon Alfa 2B Intralezyoner Kullanimi. Gürsel Turgut, Mahmut Kayali, Serdar Bora Bayraktaroğlu, Özay Özkaya, Lütfü Baş",
+      "presentation9": "3. \"Bilateral Medial Uyluk Perforatör Flebi İle Fournier Gangreni Onarimi\". Semra Hacikerim Karşidağ, Mahmut Ulvi Kayali, Arzu Özcan, Kemalettin Yildiz, Lütfü Baş.",
+      "presentation10": "4. \"Uzak Fleplerde Maserasyona Karşi Fanli Pansuman Uygulamasi\". Tahsin Görgülü, Gürsel Turgut, Mehmet Köksal, Nebil Yeşiloğlu, Mahmut Ulvi Kayali, Lütfü Baş",
+      "section3": "15-19 EYLÜL 2010 TRABZON 32. PLASTIK VE REKONSTRÜKTIF CERRAHI KONGRESI.",
+      "presentation11": "1. \"Devlet Hizmet Yükümlülüğü Görevinde Isparta Devlet Hastanesinde Serbest Alt Flep Ile Üst Ekstremite Rekonstrüksiyonu Deneyimimiz: 2 Olgu\". Mahmut Ulvi Kayali, Ufuk Küçük."
+    }
+  }
+}

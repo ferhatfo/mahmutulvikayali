@@ -1,0 +1,24 @@
+{
+  "menuItems": {
+    "home": {
+      "href": "/",
+      "label": "Home"
+    },
+    "about": {
+      "href": "/about",
+      "label": "About"
+    },
+    "franchising": {
+      "href": "/surgeries",
+      "label": "Surgeries"
+    },
+    "forVenues": {
+      "href": "/blog",
+      "label": "Blog"
+    },
+    "forBrands": {
+      "href": "/contact",
+      "label": "Contact"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "sidebar": {
+    "title": "Tüm Ameliyatlar",
+    "consultation": {
+      "title": "Ücretsiz Danışma",
+      "description": "Size özel çözümler için uzman ekibimizle görüşün",
+      "button": "Randevu Al"
+    }
+  }
+}

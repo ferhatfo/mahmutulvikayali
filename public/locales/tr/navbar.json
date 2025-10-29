@@ -1,0 +1,24 @@
+{
+  "menuItems": {
+    "home": {
+      "href": "/",
+      "label": "Anasayfa"
+    },
+    "about": {
+      "href": "/hakkimizda",
+      "label": "Hakkımızda"
+    },
+    "franchising": {
+      "href": "/ameliyatlar",
+      "label": "Ameliyatlar"
+    },
+    "forVenues": {
+      "href": "/blog",
+      "label": "Blog"
+    },
+    "forBrands": {
+      "href": "/iletisim",
+      "label": "İletişim"
+    }
+  }
+}

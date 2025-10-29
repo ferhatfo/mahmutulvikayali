@@ -1,0 +1,16 @@
+{
+  "slides": {
+    "slide1": {
+      "title": "Estetikte Doğallık ve Uyum",
+      "desc": "Yüz ve vücut estetiğinizde, doğallıktan ödün vermeden hayal ettiğiniz uyuma kavuşmanız için buradayız. Kişiye özel, güvenli ve modern yaklaşımımızla tanışın.",
+      "btnText": "Neler Yapıyoruz ?",
+      "btnUrl": "/hakkimizda"
+    },
+    "slide2": {
+      "title": "Güzelliğiniz Size Özel",
+      "desc": "Her hastanın beklentisi ve anatomisi farklıdır. Sizin için en doğru ve doğal sonucu hedefleyen, kişiye özel tedavi planlarımızla yanınızdayız.",
+      "btnText": "Keşfet",
+      "btnUrl": "/ameliyatlar"
+    }
+  }
+}
