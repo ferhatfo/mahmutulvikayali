@@ -2,7 +2,7 @@
 export const surgerySlugMapping = {
   // Türkçe -> İngilizce
   'burun-estetigi': 'rhinoplasty',
-  'ameliyatsiz-burun-estetigi-burun-dolgusu-antalya': 'non-surgical-rhinoplasty-nose-filler-antalya',
+  'ameliyatsiz-burun-estetigi-antalya': 'non-surgical-rhinoplasty-antalya',
   'primer-rinoplasti-burun-estetigi-antalya': 'primary-rhinoplasty-nose-surgery-antalya',
   'sekonder-rinoplasti-revizyon-burun-estetigi-antalya': 'secondary-rhinoplasty-revision-nose-surgery-antalya',
   'antalya-septum-deviasyonu-septoplasti-burun-estetigi': 'antalya-septum-deviation-septoplasty-nose-surgery',
@@ -39,7 +39,7 @@ export const surgerySlugMapping = {
 
   // İngilizce -> Türkçe (ters mapping)
   'rhinoplasty': 'burun-estetigi',
-  'non-surgical-rhinoplasty-nose-filler-antalya': 'ameliyatsiz-burun-estetigi-burun-dolgusu-antalya',
+  'non-surgical-rhinoplasty-antalya': 'ameliyatsiz-burun-estetigi-antalya',
   'primary-rhinoplasty-nose-surgery-antalya': 'primer-rinoplasti-burun-estetigi-antalya',
   'secondary-rhinoplasty-revision-nose-surgery-antalya': 'sekonder-rinoplasti-revizyon-burun-estetigi-antalya',
   'antalya-septum-deviation-septoplasty-nose-surgery': 'antalya-septum-deviasyonu-septoplasti-burun-estetigi',

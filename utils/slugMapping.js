@@ -37,7 +37,6 @@ export const slugMapping = {
     'cene-implantlari': 'chin-implants',
     
     // Vücut Estetiği Alt Hizmetleri
-    'vucut-estetigi': 'body-aesthetics',
     'liposuction-yag-alma-antalya': 'liposuction-fat-removal-antalya',
     'karin-germe-ameliyati-antalya': 'tummy-tuck-surgery-antalya',
     'yag-enjeksiyonlari-antalya': 'fat-injections-antalya',

@@ -67,7 +67,18 @@ const surgerySlugMapping = {
   'eyelid-surgery': 'goz-kapagi-estetigi',
   'fat-injections': 'yag-enjeksiyonlari',
   'prominent-ears': 'kepce-kulak',
-  'chin-implants': 'cene-implantlari'
+  'chin-implants': 'cene-implantlari',
+  'body-aesthetics': 'vucut-estetigi',
+  'liposuction-fat-removal-antalya': 'liposuction-yag-alma-antalya',
+  'tummy-tuck-surgery-antalya': 'karin-germe-ameliyati-antalya',
+  'fat-injections-antalya': 'yag-enjeksiyonlari-antalya',
+  'mini-tummy-tuck-antalya': 'mini-karin-germe-antalya',
+  'circumferential-tummy-tuck-antalya': 'cevresel-karin-germe-antalya',
+  'arm-lift-surgery-antalya': 'kol-germe-ameliyati-antalya',
+  'thigh-lift-surgery-antalya': 'uyluk-germe-ameliyati-antalya',
+  'buttock-lift-and-implants-antalya': 'kalca-kaldirma-protezi-antalya',
+  'foot-and-ankle-aesthetics-antalya': 'ayak-ayak-bilegi-estetigi-antalya',
+  'knee-aesthetics-antalya': 'diz-kapagi-estetigi-antalya'
 };
 
 export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
