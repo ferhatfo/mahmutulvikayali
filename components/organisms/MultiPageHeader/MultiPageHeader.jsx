@@ -9,13 +9,13 @@ export default function MultiPageHeader({ subtitle, title, isImage, imgUrl, isMa
           <h6 className="text-sm md:text-base font-medium text-white mb-2 md:mb-3 break-words">
             {subtitle}
           </h6>
-          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-[42px] text-white font-bold leading-tight break-words">
+          <h2 className="text-xl md:text-2xl lg:text-3xl xl:text-[32px] text-white font-bold leading-tight break-words">
             {title}
           </h2>
         </div>
         {
           isImage && (
-            <div className="relative mt-6 md:mt-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:right-0 max-w-full md:max-w-[400px] lg:max-w-[500px]">
+            <div className="relative mt-6 md:mt-0 md:absolute md:right-0 max-w-full md:max-w-[400px] lg:max-w-[500px]">
               <Image
                 src={imgUrl}
                 alt={title}

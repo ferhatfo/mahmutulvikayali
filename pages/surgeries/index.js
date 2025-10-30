@@ -15,8 +15,8 @@ export default function ServicesPage() {
   return (
     <>
       <Head>
-        <title>{t('metadata.title', { ns: 'surgeries' })}</title>
-        <meta name="description" content={t('metadata.description', { ns: 'surgeries' })} />
+        <title>{t('metadata.title')}</title>
+        <meta name="description" content={t('metadata.description')} />
       </Head>
 
       <MultiPageHeader

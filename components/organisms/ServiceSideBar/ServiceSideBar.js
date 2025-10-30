@@ -4,7 +4,71 @@
 import Link from 'next/link';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
+// Slug mapping'i buraya taşıyalım
+const surgerySlugMapping = {
+  // Türkçe -> İngilizce
+  'burun-estetigi': 'rhinoplasty',
+  'ameliyatsiz-burun-estetigi-antalya': 'non-surgical-rhinoplasty-antalya',
+  'primer-rinoplasti-antalya': 'primary-rhinoplasty-antalya',
+  'sekonder-ve-tersiyer-rinoplasti-antalya': 'secondary-and-tertiary-rhinoplasty-antalya',
+  'antalya-deviasyon-ve-konka-tedavisi': 'antalya-septum-deviation-and-concha-treatment',
+  'meme-estetigi-antalya': 'breast-surgery-turkey',
+  'meme-asimetrisi-antalya': 'breast-asymmetry-antalya',
+  'meme-buyutme-antalya': 'breast-augmentation-antalya',
+  'meme-buyutme-ve-diklestirme-antalya': 'breast-augmentation-and-lift-turkey',
+  'meme-diklestirme': 'breast-lift',
+  'meme-kucultme': 'breast-reduction',
+  'jinekomasti': 'gynecomastia',
+  'tickle-liposuction': 'tickle-liposuction',
+  'tickle-liposuction-sureci': 'tickle-liposuction-process',
+  'nasil-yapilir': 'how-is-it-performed',
+  'yuz-estetigi': 'facial-aesthetics',
+  'derin-plan-yuz-germe': 'deep-plane-facelift',
+  'endoskopik-kas-kaldirma': 'endoscopic-brow-lift',
+  'temporal-lift': 'temporal-lift',
+  'orta-yuz-kaldirma': 'midface-lift',
+  'goz-kapagi-estetigi': 'eyelid-surgery',
+  'yag-enjeksiyonlari': 'fat-injections',
+  'kepce-kulak': 'prominent-ears',
+  'cene-implantlari': 'chin-implants',
+  'vucut-estetigi': 'body-aesthetics',
+  'liposuction-yag-alma-antalya': 'liposuction-fat-removal-antalya',
+  'karin-germe-ameliyati-antalya': 'tummy-tuck-surgery-antalya',
+  'yag-enjeksiyonlari-antalya': 'fat-injections-antalya',
+  'mini-karin-germe-antalya': 'mini-tummy-tuck-antalya',
+  'cevresel-karin-germe-antalya': 'circumferential-tummy-tuck-antalya',
+  'kol-germe-ameliyati-antalya': 'arm-lift-surgery-antalya',
+  'uyluk-germe-ameliyati-antalya': 'thigh-lift-surgery-antalya',
+  'kalca-kaldirma-protezi-antalya': 'buttock-lift-and-implants-antalya',
+  'ayak-ayak-bilegi-estetigi-antalya': 'foot-and-ankle-aesthetics-antalya',
+  'diz-kapagi-estetigi-antalya': 'knee-aesthetics-antalya',
+  
+  // İngilizce -> Türkçe
+  'rhinoplasty': 'burun-estetigi',
+  'non-surgical-rhinoplasty': 'ameliyatsiz-burun-estetigi',
+  'primary-rhinoplasty': 'primer-rinoplasti',
+  'secondary-and-tertiary-rhinoplasty': 'sekonder-ve-tersiyer-rinoplasti',
+  'septum-deviation-and-concha-treatment': 'deviasyon-ve-konka-tedavisi',
+  'breast-surgery-turkey': 'meme-estetigi-antalya',
+  'breast-asymmetry-antalya': 'meme-asimetrisi-antalya',
+  'breast-augmentation-antalya': 'meme-buyutme-antalya',
+  'breast-augmentation-and-lift-turkey': 'meme-buyutme-ve-diklestirme-antalya',
+  'breast-lift': 'meme-diklestirme',
+  'breast-reduction': 'meme-kucultme',
+  'gynecomastia': 'jinekomasti',
+  'tickle-liposuction-process': 'tickle-liposuction-sureci',
+  'how-is-it-performed': 'nasil-yapilir',
+  'facial-aesthetics': 'yuz-estetigi',
+  'deep-plane-facelift': 'derin-plan-yuz-germe',
+  'endoscopic-brow-lift': 'endoskopik-kas-kaldirma',
+  'midface-lift': 'orta-yuz-kaldirma',
+  'eyelid-surgery': 'goz-kapagi-estetigi',
+  'fat-injections': 'yag-enjeksiyonlari',
+  'prominent-ears': 'kepce-kulak',
+  'chin-implants': 'cene-implantlari'
+};
 
 export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
   const { t } = useTranslation('surgeries');
@@ -12,60 +76,8 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
   const currentLocale = router.locale;
   const [expandedServices, setExpandedServices] = useState({});
 
-  // Slug mapping fonksiyonu
+  // Slug çeviri fonksiyonu
   const translateSlug = (slug, fromLang, toLang) => {
-    const surgerySlugMapping = {
-      // Türkçe -> İngilizce
-      'burun-estetigi': 'rhinoplasty',
-      'ameliyatsiz-burun-estetigi': 'non-surgical-rhinoplasty',
-      'primer-rinoplasti': 'primary-rhinoplasty',
-      'sekonder-ve-tersiyer-rinoplasti': 'secondary-and-tertiary-rhinoplasty',
-      'deviasyon-ve-konka-tedavisi': 'septum-deviation-and-concha-treatment',
-      'meme-estetigi': 'breast-aesthetics',
-      'meme-asimetrisi': 'breast-asymmetry',
-      'meme-buyutme': 'breast-augmentation',
-      'meme-buyutme-ve-diklestirme': 'breast-augmentation-and-lift',
-      'meme-diklestirme': 'breast-lift',
-      'meme-kucultme': 'breast-reduction',
-      'jinekomasti': 'gynecomastia',
-      'tickle-liposuction': 'tickle-liposuction',
-      'tickle-liposuction-sureci': 'tickle-liposuction-process',
-      'nasil-yapilir': 'how-is-it-performed',
-      'yuz-estetigi': 'facial-aesthetics',
-      'derin-plan-yuz-germe': 'deep-plane-facelift',
-      'endoskopik-kas-kaldirma': 'endoscopic-brow-lift',
-      'temporal-lift': 'temporal-lift',
-      'orta-yuz-kaldirma': 'midface-lift',
-      'goz-kapagi-estetigi': 'eyelid-surgery',
-      'yag-enjeksiyonlari': 'fat-injections',
-      'kepce-kulak': 'prominent-ears',
-      'cene-implantlari': 'chin-implants',
-      
-      // İngilizce -> Türkçe
-      'rhinoplasty': 'burun-estetigi',
-      'non-surgical-rhinoplasty': 'ameliyatsiz-burun-estetigi',
-      'primary-rhinoplasty': 'primer-rinoplasti',
-      'secondary-and-tertiary-rhinoplasty': 'sekonder-ve-tersiyer-rinoplasti',
-      'septum-deviation-and-concha-treatment': 'deviasyon-ve-konka-tedavisi',
-      'breast-aesthetics': 'meme-estetigi',
-      'breast-asymmetry': 'meme-asimetrisi',
-      'breast-augmentation': 'meme-buyutme',
-      'breast-augmentation-and-lift': 'meme-buyutme-ve-diklestirme',
-      'breast-lift': 'meme-diklestirme',
-      'breast-reduction': 'meme-kucultme',
-      'gynecomastia': 'jinekomasti',
-      'tickle-liposuction-process': 'tickle-liposuction-sureci',
-      'how-is-it-performed': 'nasil-yapilir',
-      'facial-aesthetics': 'yuz-estetigi',
-      'deep-plane-facelift': 'derin-plan-yuz-germe',
-      'endoscopic-brow-lift': 'endoskopik-kas-kaldirma',
-      'midface-lift': 'orta-yuz-kaldirma',
-      'eyelid-surgery': 'goz-kapagi-estetigi',
-      'fat-injections': 'yag-enjeksiyonlari',
-      'prominent-ears': 'kepce-kulak',
-      'chin-implants': 'cene-implantlari'
-    };
-
     if (fromLang === toLang) return slug;
     
     if (fromLang === 'tr' && toLang === 'en') {
@@ -81,17 +93,32 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
     return slug;
   };
 
-  // URL oluşturma fonksiyonu
+  // URL oluşturma fonksiyonu - GÜNCELLENDİ
   const getServiceUrl = (slug, isSubService = false) => {
     const basePath = currentLocale === 'tr' ? '/ameliyatlar' : '/surgeries';
     
-    // Eğer sub-service ise ve farklı dildeysek slug'ı çevir
-    if (isSubService && currentLocale === 'en') {
-      const translatedSlug = translateSlug(slug, 'tr', 'en');
-      return `${basePath}/${translatedSlug}`;
+    // Mevcut slug'ı çevir
+    let targetSlug = slug;
+    
+    if (currentLocale === 'en') {
+      // Eğer İngilizce dilindeysek, Türkçe slug'ı İngilizce'ye çevir
+      targetSlug = translateSlug(slug, 'tr', 'en');
+    } else if (currentLocale === 'tr') {
+      // Eğer Türkçe dilindeysek, İngilizce slug'ı Türkçe'ye çevir
+      targetSlug = translateSlug(slug, 'en', 'tr');
     }
     
-    return `${basePath}/${slug}`;
+    console.log(`🔗 URL Oluşturma: ${slug} -> ${targetSlug} (${currentLocale})`);
+    
+    return `${basePath}/${targetSlug}`;
+  };
+
+  // Mevcut slug'ı çevirerek kontrol et
+  const getCurrentTranslatedSlug = () => {
+    if (currentLocale === 'en') {
+      return translateSlug(currentSlug, 'tr', 'en');
+    }
+    return currentSlug;
   };
 
   // Servis genişletme/daraltma fonksiyonu
@@ -102,17 +129,39 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
     }));
   };
 
-  // Aktif servis kontrolü
+  // Aktif servis kontrolü - GÜNCELLENDİ
   const isServiceActive = (service) => {
-    return service.slug === currentSlug || 
+    const translatedServiceSlug = currentLocale === 'en' 
+      ? translateSlug(service.slug, 'tr', 'en')
+      : service.slug;
+    
+    const translatedCurrentSlug = getCurrentTranslatedSlug();
+    
+    return translatedServiceSlug === translatedCurrentSlug || 
            service.slug === parentSlug ||
-           service.subServices?.some(sub => sub.slug === currentSlug);
+           service.subServices?.some(sub => {
+             const translatedSubSlug = currentLocale === 'en'
+               ? translateSlug(sub.slug, 'tr', 'en')
+               : sub.slug;
+             return translatedSubSlug === translatedCurrentSlug;
+           });
   };
 
-  // Otomatik genişletme: Eğer servis aktifse veya alt servislerinden biri aktifse genişlet
+  // Otomatik genişletme
   const shouldExpand = (service) => {
     return expandedServices[service.slug] || isServiceActive(service);
   };
+
+  // İlk yüklemede aktif servisleri genişlet
+  useEffect(() => {
+    const initiallyExpanded = {};
+    services.forEach(service => {
+      if (isServiceActive(service)) {
+        initiallyExpanded[service.slug] = true;
+      }
+    });
+    setExpandedServices(initiallyExpanded);
+  }, [services, currentSlug, currentLocale]);
 
   return (
     <div className="bg-gray-50 rounded-lg p-6 sticky top-8">
@@ -165,7 +214,9 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
               {hasSubServices && isExpanded && (
                 <div className="bg-gray-100 border-t border-gray-200">
                   {service.subServices.map((subService, index) => {
-                    const isSubActive = subService.slug === currentSlug;
+                    const isSubActive = currentLocale === 'en'
+                      ? translateSlug(subService.slug, 'tr', 'en') === getCurrentTranslatedSlug()
+                      : subService.slug === currentSlug;
                     
                     return (
                       <Link

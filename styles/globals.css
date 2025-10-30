@@ -10,9 +10,7 @@ body {
   color: var(--foreground);
   font-family: "Montserrat", sans-serif;
 }
-h2{
-	font-family: "Playfair Display", serif;
-}
+
 .swiper-button-next{
   margin-right:25px !important;
 }

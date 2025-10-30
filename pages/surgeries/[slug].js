@@ -10,26 +10,33 @@ import { useTranslation } from 'next-i18next';
 import { getTranslation, getAvailableLocales } from '@/utils/i18nUtils';
 import { surgerySlugMapping, translateSurgerySlug } from '@/utils/surgerySlugMapping';
 
+// surgeries/[slug].js - getStaticPaths güncellemesi
 export async function getStaticPaths() {
   const locales = getAvailableLocales();
   const paths = [];
 
-  console.log('Generating static paths for locales:', locales);
 
   locales.forEach((locale) => {
     const translations = getTranslation(locale, 'services');
     const mainServices = translations.mainServices || [];
 
-    console.log(`Processing ${locale} with ${mainServices.length} main services`);
 
     mainServices.forEach((service) => {
-      // Main service path
+      // Main service path - TÜM DİLLER İÇİN SLUG'LARI EKLE
+      const mainSlug = service.slug;
       paths.push({
-        params: { slug: service.slug },
+        params: { slug: mainSlug },
         locale,
       });
 
-      console.log(`Added main service path: /${locale}/ameliyatlar/${service.slug}`);
+      // Ayrıca İngilizce slug'ı da ekle (eğer mapping varsa)
+      if (locale === 'tr' && surgerySlugMapping[mainSlug]) {
+        const englishSlug = surgerySlugMapping[mainSlug];
+        paths.push({
+          params: { slug: englishSlug },
+          locale: 'en',
+        });
+      }
 
       // Sub-service paths
       (service.subServices || []).forEach((subService) => {
@@ -38,7 +45,15 @@ export async function getStaticPaths() {
           params: { slug: subSlug },
           locale,
         });
-        console.log(`Added sub-service path: /${locale}/ameliyatlar/${subSlug}`);
+
+        // Ayrıca İngilizce sub-service slug'larını da ekle
+        if (locale === 'tr' && surgerySlugMapping[subSlug]) {
+          const englishSubSlug = surgerySlugMapping[subSlug];
+          paths.push({
+            params: { slug: englishSubSlug },
+            locale: 'en',
+          });
+        }
       });
     });
   });
@@ -52,7 +67,6 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
-  console.log('🔍 Generating props for surgery:', params.slug, 'in locale:', locale);
   
   // Servisleri dil dosyasından al
   const translations = getTranslation(locale, 'services');
@@ -64,7 +78,6 @@ export async function getStaticProps({ params, locale }) {
   // Eğer slug mapping'de varsa, doğru slug'a çevir
   if (surgerySlugMapping[params.slug]) {
     targetSlug = surgerySlugMapping[params.slug];
-    console.log(`🔄 Slug mapped: ${params.slug} -> ${targetSlug}`);
   }
   
   // Ters mapping de kontrol et (İngilizce -> Türkçe)
@@ -75,20 +88,14 @@ export async function getStaticProps({ params, locale }) {
   
   if (reverseMapping[params.slug]) {
     targetSlug = reverseMapping[params.slug];
-    console.log(`🔄 Reverse slug mapped: ${params.slug} -> ${targetSlug}`);
   }
 
-  console.log(`🎯 Searching for service with slug: ${targetSlug} in ${locale}`);
-  
   // Find main service - ÖNCE ORJİNAL SLUG İLE ARA
   let mainService = mainServices.find((s) => s.slug === targetSlug);
   
   // Eğer bulunamazsa, translated slug ile ara
   if (!mainService) {
     mainService = mainServices.find((s) => s.slug === params.slug);
-    if (mainService) {
-      console.log(`✅ Found main service with original slug: ${params.slug}`);
-    }
   }
   
   // Find sub-service
@@ -107,7 +114,6 @@ export async function getStaticProps({ params, locale }) {
         slug: service.slug,
         image: service.image,
       };
-      console.log(`✅ Found sub-service: ${found.title}`);
     }
   });
 
@@ -123,7 +129,6 @@ export async function getStaticProps({ params, locale }) {
     };
   }
 
-  console.log('✅ Found service:', mainService ? 'main' : 'sub', mainService?.title || subService?.title);
 
   const serializedMainService = mainService ? {
     title: mainService.title,
@@ -137,10 +142,12 @@ export async function getStaticProps({ params, locale }) {
     }))
   } : null;
 
+  // ÖNEMLİ: subService'e seo alanını ekleyin
   const serializedSubService = subService ? {
     title: subService.title,
     description: subService.description,
     content: subService.content,
+    seo: subService.seo || null, // SEO alanını burada ekliyoruz
     parentService: parentServiceData
   } : null;
 
@@ -165,7 +172,6 @@ export async function getStaticProps({ params, locale }) {
   };
 }
 
-// Kalan kod aynı...
 export default function ServiceDetailPage({ mainService, subService, allServices }) {
   const { t } = useTranslation('surgeries');
 
@@ -185,9 +191,6 @@ export default function ServiceDetailPage({ mainService, subService, allServices
   const currentService = subService || mainService;
   const parentService = subService ? subService.parentService : mainService;
 
-  const seoTitle = currentService.title;
-  const seoDescription = currentService.description;
-
   const createMarkup = (htmlContent) => {
     return { __html: htmlContent };
   };
@@ -195,11 +198,25 @@ export default function ServiceDetailPage({ mainService, subService, allServices
   return (
     <>
       <Head>
-        <title>{seoTitle} - {t('doctorName')}</title>
-        <meta name="description" content={seoDescription} />
-        <meta property="og:title" content={seoTitle} />
-        <meta property="og:description" content={seoDescription} />
+        <title>
+          {subService?.seo?.title || currentService.title}
+        </title>
+        <meta 
+          name="description" 
+          content={subService?.seo?.description || currentService.description} 
+        />
+        <meta 
+          property="og:title" 
+          content={subService?.seo?.title || currentService.title} 
+        />
+        <meta 
+          property="og:description" 
+          content={subService?.seo?.description || currentService.description} 
+        />
         <meta property="og:type" content="website" />
+        {subService?.seo?.keywords && (
+          <meta name="keywords" content={subService.seo.keywords} />
+        )}
       </Head>
 
       <MultiPageHeader
@@ -228,7 +245,7 @@ export default function ServiceDetailPage({ mainService, subService, allServices
                 <h1 className="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
                   {currentService.title}
                 </h1>
-                <p className="text-lg text-gray-700 leading-relaxed">
+                <p className="text-lg text-gray-700 leading-relaxed" style={{ whiteSpace: 'pre-line' }}>
                   {currentService.description}
                 </p>
               </div>

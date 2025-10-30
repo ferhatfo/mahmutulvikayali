@@ -142,7 +142,15 @@ export default function ServicesSection() {
                 <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-900 mb-3 md:mb-4">
                   {service.title}
                 </h2>
-                <p className="text-gray-600 mb-2 leading-relaxed text-sm md:text-base">
+                <p 
+                  className="text-gray-600 mb-2 leading-relaxed text-sm md:text-base"
+                  style={{
+                    display: '-webkit-box',
+                    WebkitLineClamp: 1,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
                   {service.description}
                 </p>
                 
