@@ -15,8 +15,8 @@ export default function ServicesPage() {
   return (
     <>
       <Head>
-        <title>{t('metadata.title')}</title>
-        <meta name="description" content={t('metadata.description')} />
+        <title>{t('common:procedureDetails')}</title>
+        <meta name="description" content={t('common:procedureText')} />
       </Head>
 
       <MultiPageHeader
