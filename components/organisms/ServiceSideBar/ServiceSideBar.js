@@ -8,31 +8,34 @@ import { useState, useEffect } from 'react';
 
 // Slug mapping'i buraya taşıyalım
 const surgerySlugMapping = {
-  // Türkçe -> İngilizce
   'burun-estetigi': 'rhinoplasty',
   'ameliyatsiz-burun-estetigi-antalya': 'non-surgical-rhinoplasty-antalya',
   'primer-rinoplasti-antalya': 'primary-rhinoplasty-antalya',
   'sekonder-ve-tersiyer-rinoplasti-antalya': 'secondary-and-tertiary-rhinoplasty-antalya',
-  'antalya-deviasyon-ve-konka-tedavisi': 'antalya-septum-deviation-and-concha-treatment',
-  'meme-estetigi-antalya': 'breast-surgery-turkey',
+  'antalya-deviasyon-ve-konka-tedavisi': 'antalya-deviation-and-concha-treatment',
+
+  'antalya-meme-estetigi': 'breast-surgery-in-turkey',
   'meme-asimetrisi-antalya': 'breast-asymmetry-antalya',
   'meme-buyutme-antalya': 'breast-augmentation-antalya',
   'meme-buyutme-ve-diklestirme-antalya': 'breast-augmentation-and-lift-turkey',
-  'meme-diklestirme': 'breast-lift',
-  'meme-kucultme': 'breast-reduction',
-  'jinekomasti': 'gynecomastia',
+  'protezsiz-meme-diklestirme-antalya': 'breast-lift-without-implants-antalya',
+  'meme-kucultme-antalya': 'breast-reduction-antalya',
+  'jinekomasti-erkek-meme-kucultme-antalya': 'gynecomastia-surgery-antalya',
+
   'tickle-liposuction': 'tickle-liposuction',
   'tickle-liposuction-sureci': 'tickle-liposuction-process',
-  'nasil-yapilir': 'how-is-it-performed',
+  'tickle-liposuction-nasil-yapilir': 'how-is-tickle-liposuction-performed',
+
   'yuz-estetigi': 'facial-aesthetics',
-  'derin-plan-yuz-germe': 'deep-plane-facelift',
-  'endoskopik-kas-kaldirma': 'endoscopic-brow-lift',
-  'temporal-lift': 'temporal-lift',
-  'orta-yuz-kaldirma': 'midface-lift',
-  'goz-kapagi-estetigi': 'eyelid-surgery',
-  'yag-enjeksiyonlari': 'fat-injections',
-  'kepce-kulak': 'prominent-ears',
-  'cene-implantlari': 'chin-implants',
+  'derin-plan-yuz-germe-antalya': 'deep-plane-facelift-turkey',
+  'endoskopik-kas-kaldirma-antalya': 'endoscopic-brow-lift-turkey',
+  'temporal-lift-sakak-germe-antalya': 'temporal-lift-surgery-antalya',
+  'orta-yuz-kaldirma-antalya': 'subperiosteal-midface-lift-turkey',
+  'goz-kapagi-estetigi-antalya': 'eyelid-surgery-antalya',
+  'yuz-yag-enjeksiyonu-antalya': 'facial-fat-transfer-injections',
+  'antalyada-kepce-kulak-estetigi-otoplasti': 'prominent-ears-surgery-antalya',
+  'medpor-cene-implantlari-antalya': 'medpor-chin-implants-turkey',
+
   'vucut-estetigi': 'body-aesthetics',
   'liposuction-yag-alma-antalya': 'liposuction-fat-removal-antalya',
   'karin-germe-ameliyati-antalya': 'tummy-tuck-surgery-antalya',
@@ -41,33 +44,39 @@ const surgerySlugMapping = {
   'cevresel-karin-germe-antalya': 'circumferential-tummy-tuck-antalya',
   'kol-germe-ameliyati-antalya': 'arm-lift-surgery-antalya',
   'uyluk-germe-ameliyati-antalya': 'thigh-lift-surgery-antalya',
-  'kalca-kaldirma-protezi-antalya': 'buttock-lift-and-implants-antalya',
-  'ayak-ayak-bilegi-estetigi-antalya': 'foot-and-ankle-aesthetics-antalya',
+  'kalca-kaldirma-protezi-antalya': 'buttock-lift-implants-antalya',
+  'ayak-ve-ayak-bilegi-estetigi-antalya': 'foot-and-ankle-aesthetics-antalya',
   'diz-kapagi-estetigi-antalya': 'knee-aesthetics-antalya',
-  
-  // İngilizce -> Türkçe
+
+  // İngilizce -> Türkçe (ters mapping)
   'rhinoplasty': 'burun-estetigi',
-  'non-surgical-rhinoplasty': 'ameliyatsiz-burun-estetigi',
-  'primary-rhinoplasty': 'primer-rinoplasti',
-  'secondary-and-tertiary-rhinoplasty': 'sekonder-ve-tersiyer-rinoplasti',
-  'septum-deviation-and-concha-treatment': 'deviasyon-ve-konka-tedavisi',
-  'breast-surgery-turkey': 'meme-estetigi-antalya',
+  'non-surgical-rhinoplasty-antalya': 'ameliyatsiz-burun-estetigi-antalya',
+  'primary-rhinoplasty-antalya': 'primer-rinoplasti-antalya',
+  'secondary-and-tertiary-rhinoplasty-antalya': 'sekonder-ve-tersiyer-rinoplasti-antalya',
+  'antalya-deviation-and-concha-treatment': 'antalya-deviasyon-ve-konka-tedavisi',
+
+  'breast-surgery-in-turkey': 'antalya-meme-estetigi',
   'breast-asymmetry-antalya': 'meme-asimetrisi-antalya',
   'breast-augmentation-antalya': 'meme-buyutme-antalya',
   'breast-augmentation-and-lift-turkey': 'meme-buyutme-ve-diklestirme-antalya',
-  'breast-lift': 'meme-diklestirme',
-  'breast-reduction': 'meme-kucultme',
-  'gynecomastia': 'jinekomasti',
+  'breast-lift-without-implants-antalya': 'protezsiz-meme-diklestirme-antalya',
+  'breast-reduction-antalya': 'meme-kucultme-antalya',
+  'gynecomastia-surgery-antalya': 'jinekomasti-erkek-meme-kucultme-antalya',
+
+  'tickle-liposuction': 'tickle-liposuction',
   'tickle-liposuction-process': 'tickle-liposuction-sureci',
-  'how-is-it-performed': 'nasil-yapilir',
+  'how-is-tickle-liposuction-performed': 'tickle-liposuction-nasil-yapilir',
+
   'facial-aesthetics': 'yuz-estetigi',
-  'deep-plane-facelift': 'derin-plan-yuz-germe',
-  'endoscopic-brow-lift': 'endoskopik-kas-kaldirma',
-  'midface-lift': 'orta-yuz-kaldirma',
-  'eyelid-surgery': 'goz-kapagi-estetigi',
-  'fat-injections': 'yag-enjeksiyonlari',
-  'prominent-ears': 'kepce-kulak',
-  'chin-implants': 'cene-implantlari',
+  'deep-plane-facelift-turkey': 'derin-plan-yuz-germe-antalya',
+  'endoscopic-brow-lift-turkey': 'endoskopik-kas-kaldirma-antalya',
+  'temporal-lift-surgery-antalya': 'temporal-lift-sakak-germe-antalya',
+  'subperiosteal-midface-lift-turkey': 'orta-yuz-kaldirma-antalya',
+  'eyelid-surgery-antalya': 'goz-kapagi-estetigi-antalya',
+  'facial-fat-transfer-injections': 'yuz-yag-enjeksiyonu-antalya',
+  'prominent-ears-surgery-antalya': 'antalyada-kepce-kulak-estetigi-otoplasti',
+  'medpor-chin-implants-turkey': 'medpor-cene-implantlari-antalya',
+
   'body-aesthetics': 'vucut-estetigi',
   'liposuction-fat-removal-antalya': 'liposuction-yag-alma-antalya',
   'tummy-tuck-surgery-antalya': 'karin-germe-ameliyati-antalya',
@@ -76,8 +85,8 @@ const surgerySlugMapping = {
   'circumferential-tummy-tuck-antalya': 'cevresel-karin-germe-antalya',
   'arm-lift-surgery-antalya': 'kol-germe-ameliyati-antalya',
   'thigh-lift-surgery-antalya': 'uyluk-germe-ameliyati-antalya',
-  'buttock-lift-and-implants-antalya': 'kalca-kaldirma-protezi-antalya',
-  'foot-and-ankle-aesthetics-antalya': 'ayak-ayak-bilegi-estetigi-antalya',
+  'buttock-lift-implants-antalya': 'kalca-kaldirma-protezi-antalya',
+  'foot-and-ankle-aesthetics-antalya': 'ayak-ve-ayak-bilegi-estetigi-antalya',
   'knee-aesthetics-antalya': 'diz-kapagi-estetigi-antalya'
 };
 
@@ -87,13 +96,15 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
   const currentLocale = router.locale;
   const [expandedServices, setExpandedServices] = useState({});
 
-  // Slug çeviri fonksiyonu
-  const translateSlug = (slug, fromLang, toLang) => {
-    if (fromLang === toLang) return slug;
+  // Slug çeviri fonksiyonu - BASİTLEŞTİRİLDİ
+  const translateSlug = (slug, targetLang) => {
+    if (targetLang === currentLocale) return slug;
     
-    if (fromLang === 'tr' && toLang === 'en') {
+    if (currentLocale === 'tr' && targetLang === 'en') {
+      // Türkçe'den İngilizce'ye çeviri
       return surgerySlugMapping[slug] || slug;
-    } else if (fromLang === 'en' && toLang === 'tr') {
+    } else if (currentLocale === 'en' && targetLang === 'tr') {
+      // İngilizce'den Türkçe'ye çeviri
       const reverseMapping = {};
       Object.entries(surgerySlugMapping).forEach(([key, value]) => {
         reverseMapping[value] = key;
@@ -104,32 +115,22 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
     return slug;
   };
 
-  // URL oluşturma fonksiyonu - GÜNCELLENDİ
-  const getServiceUrl = (slug, isSubService = false) => {
+  // URL oluşturma fonksiyonu - YENİ MANTIK
+  const getServiceUrl = (slug) => {
     const basePath = currentLocale === 'tr' ? '/ameliyatlar' : '/surgeries';
     
-    // Mevcut slug'ı çevir
-    let targetSlug = slug;
+    // Mevcut dildeki slug'ı doğrudan kullan
+    console.log(`🔗 URL Oluşturma: ${slug} (${currentLocale}) -> ${basePath}/${slug}`);
     
-    if (currentLocale === 'en') {
-      // Eğer İngilizce dilindeysek, Türkçe slug'ı İngilizce'ye çevir
-      targetSlug = translateSlug(slug, 'tr', 'en');
-    } else if (currentLocale === 'tr') {
-      // Eğer Türkçe dilindeysek, İngilizce slug'ı Türkçe'ye çevir
-      targetSlug = translateSlug(slug, 'en', 'tr');
-    }
-    
-    console.log(`🔗 URL Oluşturma: ${slug} -> ${targetSlug} (${currentLocale})`);
-    
-    return `${basePath}/${targetSlug}`;
+    return `${basePath}/${slug}`;
   };
 
-  // Mevcut slug'ı çevirerek kontrol et
-  const getCurrentTranslatedSlug = () => {
-    if (currentLocale === 'en') {
-      return translateSlug(currentSlug, 'tr', 'en');
-    }
-    return currentSlug;
+  // Aktif servis kontrolü - BASİTLEŞTİRİLDİ
+  const isServiceActive = (service) => {
+    // Doğrudan slug karşılaştırması
+    return service.slug === currentSlug || 
+           service.slug === parentSlug ||
+           service.subServices?.some(sub => sub.slug === currentSlug);
   };
 
   // Servis genişletme/daraltma fonksiyonu
@@ -138,24 +139,6 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
       ...prev,
       [serviceSlug]: !prev[serviceSlug]
     }));
-  };
-
-  // Aktif servis kontrolü - GÜNCELLENDİ
-  const isServiceActive = (service) => {
-    const translatedServiceSlug = currentLocale === 'en' 
-      ? translateSlug(service.slug, 'tr', 'en')
-      : service.slug;
-    
-    const translatedCurrentSlug = getCurrentTranslatedSlug();
-    
-    return translatedServiceSlug === translatedCurrentSlug || 
-           service.slug === parentSlug ||
-           service.subServices?.some(sub => {
-             const translatedSubSlug = currentLocale === 'en'
-               ? translateSlug(sub.slug, 'tr', 'en')
-               : sub.slug;
-             return translatedSubSlug === translatedCurrentSlug;
-           });
   };
 
   // Otomatik genişletme
@@ -225,14 +208,12 @@ export default function ServiceSidebar({ services, currentSlug, parentSlug }) {
               {hasSubServices && isExpanded && (
                 <div className="bg-gray-100 border-t border-gray-200">
                   {service.subServices.map((subService, index) => {
-                    const isSubActive = currentLocale === 'en'
-                      ? translateSlug(subService.slug, 'tr', 'en') === getCurrentTranslatedSlug()
-                      : subService.slug === currentSlug;
+                    const isSubActive = subService.slug === currentSlug;
                     
                     return (
                       <Link
                         key={index}
-                        href={getServiceUrl(subService.slug, true)}
+                        href={getServiceUrl(subService.slug)}
                         locale={currentLocale}
                         className={`block py-3 px-6 border-b border-gray-200 last:border-b-0 ${
                           isSubActive 
