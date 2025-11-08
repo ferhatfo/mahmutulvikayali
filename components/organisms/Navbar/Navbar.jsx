@@ -312,11 +312,12 @@ export default function Navbar({ multiPageNavbar }) {
         style={{ borderColor: multiPageNavbar ? '#aa7cce' : 'transparent' }}>
         
         <Link href="/" locale={i18n?.language || router.locale}>
-          {multiPageNavbar ? (
-            <Image src="/images/svg/logo-white.svg" alt="Logo" width={200} height={50} />
-          ) : (
-            <Image src="/images/svg/logo.svg" alt="Logo" width={200} height={50} />
-          )}
+          <Image 
+            src={i18n?.language === 'en' ? "/images/svg/logo-en.svg" : "/images/svg/logo.svg"} 
+            alt="Logo" 
+            width={200} 
+            height={50} 
+          />
         </Link>
 
         {/* MOBİL MENÜ */}

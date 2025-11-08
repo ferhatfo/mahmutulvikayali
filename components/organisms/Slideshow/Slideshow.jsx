@@ -85,7 +85,7 @@ export default function Slider() {
   return (
     <section>
       <div className="relative w-full h-[calc(100vh-105px)] overflow-hidden bg-white">
-        {/* Desktop Layout */}
+        {/* Desktop Layout - Aynı kalacak */}
         <div className="hidden lg:block relative w-full h-full">
           <div className="absolute left-0 top-0 w-1/2 h-full bg-white z-20 flex items-center">
             <div
@@ -129,35 +129,24 @@ export default function Slider() {
           </div>
         </div>
 
-        {/* Mobile Layout */}
-        <div className="lg:hidden relative w-full h-full">
-          <div className="absolute inset-0 z-10 overflow-hidden">
-            <img 
-              src={slides[current]?.image} 
-              alt={slides[current]?.title} 
-              className={`w-full h-full object-cover transition-all duration-600 ${
-                isAnimating ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
-              }`}
-            />
-          </div>
-
-          <div className="absolute inset-0 z-20 bg-black/40"></div>
-
-          <div className="absolute inset-0 z-30 flex items-center justify-center">
+        {/* Mobile Layout - YENİ: Yazılar üstte, fotoğraf altta */}
+        <div className="lg:hidden relative w-full h-full flex flex-col">
+          {/* Yazılar - Üst Kısım */}
+          <div className="flex-1 bg-white z-30 flex items-center justify-center">
             <div
               className={`text-left px-6 w-full max-w-md transition-all duration-600 ${
                 isAnimating ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'
               }`}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-4">
                 {slides[current]?.title}
               </h2>
               {slides[current]?.altTitle && (
-                <h6 className="text-lg font-regular mb-4 text-gray-200">
+                <h6 className="text-lg font-regular mb-4 text-gray-700">
                   {slides[current].altTitle}
                 </h6>
               )}
-              <p className="mb-6 text-sm md:text-base text-gray-100 leading-relaxed">
+              <p className="mb-6 text-sm md:text-base text-gray-600 leading-relaxed">
                 {slides[current]?.desc}
               </p>
               <Link 
@@ -166,13 +155,24 @@ export default function Slider() {
               >
                 <Button
                   text={slides[current]?.btnText}
-                  backgroundColor="#ffffff"
-                  textColor="#151515"
+                  backgroundColor="#151515"
+                  textColor="#fff"
                   icon={<FaArrowRight size={14} />}
-                  className="mx-auto hover:bg-gray-100"
+                  className="mx-auto hover:bg-gray-800"
                 />
               </Link>
             </div>
+          </div>
+
+          {/* Fotoğraf - Alt Kısım */}
+          <div className="flex-1 relative z-20 overflow-hidden">
+            <img 
+              src={slides[current]?.image} 
+              alt={slides[current]?.title} 
+              className={`w-full h-full object-cover transition-all duration-600 ${
+                isAnimating ? 'opacity-0 scale-105' : 'opacity-100 scale-100'
+              }`}
+            />
           </div>
         </div>
 
