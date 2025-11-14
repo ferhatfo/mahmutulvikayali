@@ -24,6 +24,13 @@ export default function Navbar({ multiPageNavbar }) {
     { code: 'en', name: 'En', native: 'English', flag: '🇬🇧' }
   ];
 
+  // Instagram bilgileri
+  const instagramInfo = {
+    src: '/images/svg/Instagram.svg',
+    href: 'https://www.instagram.com/drmahmutulvikayali/',
+    alt: 'Instagram'
+  };
+
   // Menu items'ı al
   const menuItems = Object.values(t('menuItems', { returnObjects: true, defaultValue: {} }))
     .filter(item => item && item.href && item.label);
@@ -37,7 +44,6 @@ export default function Navbar({ multiPageNavbar }) {
   };
 
   // Dil değiştirme fonksiyonu - BLOG DESTEKLİ
-  // components/organisms/Navbar.jsx - dil değiştirme fonksiyonunu güncelleyin
   const changeLanguage = async (lang) => {
     try {
       const { pathname, asPath, query } = router;
@@ -323,6 +329,22 @@ export default function Navbar({ multiPageNavbar }) {
         {/* MOBİL MENÜ */}
         <div className="lg:hidden flex items-center">
           
+          {/* Instagram Icon - Mobile */}
+          <a 
+            href={instagramInfo.href} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="mr-4"
+          >
+            <Image 
+              src={instagramInfo.src} 
+              alt={instagramInfo.alt}
+              width={24}
+              height={24}
+              className={`${multiPageNavbar ? 'invert' : ''}`}
+            />
+          </a>
+          
           <div className="relative mr-4" ref={langRef}>
             <button
               onClick={(e) => {
@@ -395,6 +417,23 @@ export default function Navbar({ multiPageNavbar }) {
               </Link>
             ))}
           </nav>
+          
+          {/* Instagram Icon - Desktop */}
+          <a 
+            href={instagramInfo.href} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            className="flex items-center"
+          >
+            <Image 
+              src={instagramInfo.src} 
+              alt={instagramInfo.alt}
+              width={20}
+              height={20}
+              className={`${multiPageNavbar ? 'invert' : ''}`}
+            />
+          </a>
+          
           <div className="relative" ref={langRef}>
             <button
               onClick={(e) => {
