@@ -4,13 +4,19 @@
       "title": "Experience and Trust in Aesthetics",
       "desc": "Achieve your dream natural beauty with confidence through Op. Dr. Mahmut Ulvi Kayalı's over 20 years of experience supported by international qualifications. Discover our personalized approach and modern surgical methods.",
       "btnText": "What We Do ?",
-      "btnUrl": "/about"
+      "btnUrl": "/surgeries"
     },
     "slide2": {
-      "title": "Your Beauty is Unique",
-      "desc": "Every patient's expectations and anatomy are different. We are with you with our personalized treatment plans that aim for the most accurate and natural result for you.",
-      "btnText": "Explore",
-      "btnUrl": "/surgeries"
+      "title": "Real-Time Updates From Us",
+      "desc": "Follow us on Instagram for real patient experiences, genuine moments from pre and post-op processes, and tips from the world of aesthetics. Find inspiration for your beauty journey.",
+      "btnText": "Follow Us",
+      "btnUrl": "https://www.instagram.com/drmahmutulvikayali/"
+    },
+    "slide3": {
+      "title": "Where Science Meets Art",
+      "desc": "Aesthetics requires a meticulous scientific approach and a refined sense of art. We carefully balance these two to achieve the most natural and harmonious result for you.",
+      "btnText": "About Me",
+      "btnUrl": "/about"
     }
   }
 }

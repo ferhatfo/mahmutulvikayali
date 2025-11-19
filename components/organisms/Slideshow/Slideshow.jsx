@@ -10,11 +10,15 @@ import { useRouter } from 'next/router';
 const slideData = [
   {
     id: 1,
-    image: '/images/slide3.webp'
+    image: '/images/slide1.webp'
   },
   {
     id: 2,
     image: '/images/slide2.webp'
+  },
+  {
+    id: 2,
+    image: '/images/slide3.webp'
   },
 ];
 
