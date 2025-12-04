@@ -19,7 +19,7 @@ export default function MultiPageHeader({ subtitle, title, isImage, imgUrl, isMa
               <Image
                 src={imgUrl}
                 alt={title}
-                className="object-cover max-h-[300px] md:max-h-[400px] lg:max-h-[500px] w-full"
+                className="object-cover max-h-[400px] md:max-h-[400px] lg:max-h-[500px] w-full"
                 width={487}
                 height={731}
                 priority
