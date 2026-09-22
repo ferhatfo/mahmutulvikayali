@@ -6,5 +6,12 @@
       "description": "Size özel çözümler için uzman ekibimizle görüşün",
       "button": "Randevu Al"
     }
+  },
+  "breadcrumb": {
+    "home": "Anasayfa"
+  },
+  "serviceNotFound": "Ameliyat bulunamadı",
+  "cta": {
+    "viewAllProcedures": "Tüm ameliyatları görüntüle"
   }
 }

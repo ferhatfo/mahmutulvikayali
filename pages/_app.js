@@ -13,6 +13,8 @@ function App({ Component, pageProps }) {
     <>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        {/* Varsayılan başlık; sayfalar kendi <title> değerleriyle bunu ezer */}
+        <title>Op. Dr. Mahmut Ulvi Kayalı</title>
       </Head>
       <Navbar />
       <Component {...pageProps} key={router.asPath} />

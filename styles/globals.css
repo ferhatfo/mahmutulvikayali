@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Ameliyat/blog içerikleri JSON dil dosyalarında HTML olarak tutuluyor;
+   Tailwind v4 bu sınıfları üretebilmek için kaynağı bilmek zorunda. */
+@source "../public/locales/**/*.json";
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

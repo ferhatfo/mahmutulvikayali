@@ -6,5 +6,12 @@
       "description": "Consult with our expert team for personalized solutions",
       "button": "Get Appointment"
     }
+  },
+  "breadcrumb": {
+    "home": "Home"
+  },
+  "serviceNotFound": "Procedure not found",
+  "cta": {
+    "viewAllProcedures": "View all procedures"
   }
 }

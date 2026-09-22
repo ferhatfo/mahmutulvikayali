@@ -1,10 +1,9 @@
-import { Html, Head, Main, NextScript } from 'next/document';
+import NextDocument, { Html, Head, Main, NextScript } from 'next/document';
 
-export default function Document() {
+export default function Document({ locale }) {
   return (
-    <Html lang="tr">
+    <Html lang={locale || 'tr'}>
       <Head>
-        <title>{`Op. Dr. Mahmut Ulvi Kayalı`}</title>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="true" />
         <link
@@ -19,3 +18,9 @@ export default function Document() {
     </Html>
   );
 }
+
+// <html lang> aktif dile göre işaretlenmeli (hreflang ile tutarlı olması için)
+Document.getInitialProps = async (ctx) => {
+  const initialProps = await NextDocument.getInitialProps(ctx);
+  return { ...initialProps, locale: ctx.locale || ctx.defaultLocale || 'tr' };
+};

@@ -1,13 +1,16 @@
 import Link from 'next/link';
-import { slugify } from '@/utils/slugify';
 import MultiPageHeader from '@/components/organisms/MultiPageHeader';
 import Head from 'next/head';
 import Image from "next/image";
+import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { useTranslation } from 'next-i18next';
+import { surgeryPath, DEFAULT_LOCALE } from '@/utils/siteConfig';
 
 export default function ServicesPage() {
   const { t } = useTranslation('services');
+  const { locale } = useRouter();
+  const currentLocale = locale || DEFAULT_LOCALE;
 
   // Servisleri dil dosyasından al
   const mainServices = t('mainServices', { returnObjects: true });
@@ -44,7 +47,7 @@ export default function ServicesPage() {
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6">
                     <Link
-                      href={`/ameliyatlar/${slug}`}
+                      href={surgeryPath(currentLocale, slug)}
                       className="bg-white hover:bg-gray-200 px-3 py-3 rounded-lg text-sm text-gray-700 hover:text-gray-900 transition-all duration-200 hover:shadow-sm text-center border border-gray-300"
                     >
                       <span className="font-medium text-gray-800">
@@ -55,7 +58,7 @@ export default function ServicesPage() {
                     {service.subServices.map((subService, index) => (
                       <Link
                         key={index}
-                        href={`/ameliyatlar/${slugify(subService.title)}`}
+                        href={surgeryPath(currentLocale, subService.slug)}
                         className="bg-white hover:bg-gray-200 px-3 py-3 rounded-lg text-sm text-gray-700 hover:text-gray-900 transition-all duration-200 hover:shadow-sm text-center border border-gray-300"
                       >
                         <span className="font-medium text-gray-800">
