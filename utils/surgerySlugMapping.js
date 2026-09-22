@@ -1,101 +1,65 @@
 // utils/surgerySlugMapping.js
-export const surgerySlugMapping = {
-  // Türkçe -> İngilizce
-  'burun-estetigi': 'rhinoplasty',
-  'ameliyatsiz-burun-estetigi-antalya': 'non-surgical-rhinoplasty-antalya',
-  'primer-rinoplasti-antalya': 'primary-rhinoplasty-antalya',
-  'sekonder-ve-tersiyer-rinoplasti-antalya': 'secondary-and-tertiary-rhinoplasty-antalya',
-  'antalya-deviasyon-ve-konka-tedavisi': 'antalya-deviation-and-concha-treatment',
+// Tek doğru kaynak: public/locales/{tr,en}/services.json içindeki "slug" alanları.
+// Çiftler tek listede tutulur; iki yönlü tablo ve dil kümeleri buradan türetilir,
+// böylece eskiden olduğu gibi ters tablonun ayrı tutulup kaymasına gerek kalmaz.
+export const surgerySlugPairs = [
+  ['burun-estetigi', 'rhinoplasty'], // Burun Estetiği
+  ['ameliyatsiz-burun-estetigi-antalya', 'non-surgical-rhinoplasty-antalya'], // Ameliyatsız Burun Estetiği Antalya
+  ['primer-rinoplasti-antalya', 'primary-rhinoplasty-antalya'], // Primer Rinoplasti Antalya
+  ['sekonder-ve-tersiyer-rinoplasti-antalya', 'secondary-and-tertiary-rhinoplasty-antalya'], // Sekonder ve Tersiyer Rinoplasti Antalya
+  ['antalya-deviasyon-ve-konka-tedavisi', 'antalya-deviation-and-concha-treatment'], // Antalya Deviasyon ve Konka Tedavisi
 
-  'antalya-meme-estetigi': 'breast-surgery-in-turkey',
-  'meme-asimetrisi-antalya': 'breast-asymmetry-antalya',
-  'meme-buyutme-antalya': 'breast-augmentation-antalya',
-  'meme-buyutme-ve-diklestirme-antalya': 'breast-augmentation-and-lift-turkey',
-  'protezsiz-meme-diklestirme-antalya': 'breast-lift-without-implants-antalya',
-  'meme-kucultme-antalya': 'breast-reduction-antalya',
-  'jinekomasti-erkek-meme-kucultme-antalya': 'gynecomastia-surgery-antalya',
+  ['antalya-meme-estetigi', 'breast-surgery-in-turkey'], // Antalya Meme Estetiği
+  ['meme-asimetrisi-antalya', 'breast-asymmetry-antalya'], // Meme Asimetrisi Antalya
+  ['meme-buyutme-antalya', 'breast-augmentation-antalya'], // Meme Büyütme Antalya
+  ['meme-buyutme-ve-diklestirme-antalya', 'breast-augmentation-and-lift-turkey'], // Meme Büyütme ve Dikleştirme Antalya
+  ['protezsiz-meme-diklestirme-antalya', 'breast-lift-without-implants-antalya'], // Protezsiz Meme Dikleştirme Antalya
+  ['meme-kucultme-antalya', 'breast-reduction-antalya'], // Meme Küçültme Antalya
+  ['jinekomasti-erkek-meme-kucultme-antalya', 'gynecomastia-surgery-antalya'], // Jinekomasti Erkek Meme Küçültme Antalya
 
-  'tickle-liposuction': 'tickle-liposuction',
-  'tickle-liposuction-sureci': 'tickle-liposuction-process',
-  'tickle-liposuction-nasil-yapilir': 'how-is-tickle-liposuction-performed',
+  ['tickle-liposuction', 'tickle-liposuction'], // Tickle Liposuction
+  ['tickle-liposuction-sureci', 'tickle-liposuction-process'], // Tickle Liposuction Süreci
+  ['tickle-liposuction-nasil-yapilir', 'how-is-tickle-liposuction-performed'], // Tickle Liposuction Nasıl Yapılır?
 
-  'yuz-estetigi': 'facial-aesthetics',
-  'derin-plan-yuz-germe-antalya': 'deep-plane-facelift-turkey',
-  'endoskopik-kas-kaldirma-antalya': 'endoscopic-brow-lift-turkey',
-  'temporal-lift-ve-sakak-germe-antalya': 'temporal-lift-surgery-antalya',
-  'orta-yuz-kaldirma-antalya': 'subperiosteal-midface-lift-turkey',
-  'goz-kapagi-estetigi-antalya': 'eyelid-surgery-antalya',
-  'yuz-yag-enjeksiyonu-antalya': 'facial-fat-transfer-injections',
-  'antalyada-kepce-kulak-estetigi-otoplasti': 'prominent-ears-surgery-antalya',
-  'medpor-cene-implantlari-antalya': 'medpor-chin-implants-turkey',
+  ['yuz-estetigi', 'facial-aesthetics'], // Yüz Estetiği
+  ['derin-plan-yuz-germe-antalya', 'deep-plane-facelift-turkey'], // Derin Plan Yüz Germe Antalya
+  ['endoskopik-kas-kaldirma-antalya', 'endoscopic-brow-lift-turkey'], // Endoskopik Kaş Kaldırma Antalya
+  ['temporal-lift-ve-sakak-germe-antalya', 'temporal-lift-surgery-antalya'], // Temporal Lift ve Şakak Germe Antalya
+  ['orta-yuz-kaldirma-antalya', 'subperiosteal-midface-lift-turkey'], // Orta Yüz Kaldırma Antalya
+  ['goz-kapagi-estetigi-antalya', 'eyelid-surgery-antalya'], // Göz Kapağı Estetiği Antalya
+  ['yuz-yag-enjeksiyonu-antalya', 'facial-fat-transfer-injections'], // Yağ Enjeksiyonları Antalya
+  ['antalyada-kepce-kulak-estetigi-otoplasti', 'prominent-ears-surgery-antalya'], // Antalyada Kepçe Kulak Estetiği Otoplasti
+  ['medpor-cene-implantlari-antalya', 'medpor-chin-implants-turkey'], // Medpor Çene İmplantları Antalya
 
-  'vucut-estetigi': 'body-aesthetics',
-  'liposuction-yag-alma-antalya': 'liposuction-fat-removal-antalya',
-  'karin-germe-ameliyati-antalya': 'tummy-tuck-surgery-antalya',
-  'yag-enjeksiyonlari-antalya': 'fat-injections-antalya',
-  'mini-karin-germe-antalya': 'mini-tummy-tuck-antalya',
-  'cevresel-karin-germe-antalya': 'circumferential-tummy-tuck-antalya',
-  'kol-germe-ameliyati-antalya': 'arm-lift-surgery-antalya',
-  'uyluk-germe-ameliyati-antalya': 'thigh-lift-surgery-antalya',
-  'kalca-kaldirma-protezi-antalya': 'buttock-lift-implants-antalya',
-  'ayak-ve-ayak-bilegi-estetigi-antalya': 'foot-and-ankle-aesthetics-antalya',
-  'diz-kapagi-estetigi-antalya': 'knee-aesthetics-antalya',
+  ['vucut-estetigi', 'body-aesthetics'], // Vücut Estetiği
+  ['liposuction-yag-alma-antalya', 'liposuction-fat-removal-antalya'], // Liposuction (Yağ Alma) ve Vücut Şekillendirme Antalya
+  ['karin-germe-ameliyati-antalya', 'tummy-tuck-surgery-antalya'], // Karın Germe Ameliyatı Antalya
+  ['yag-enjeksiyonlari-antalya', 'fat-injections-antalya'], // Yağ Enjeksiyonları Antalya
+  ['mini-karin-germe-antalya', 'mini-tummy-tuck-antalya'], // Mini Karın Germe Antalya
+  ['cevresel-karin-germe-antalya', 'circumferential-tummy-tuck-antalya'], // Çevresel Karın Germe Antalya
+  ['kol-germe-ameliyati-antalya', 'arm-lift-surgery-antalya'], // Kol Germe Ameliyatı Antalya
+  ['uyluk-germe-ameliyati-antalya', 'thigh-lift-surgery-antalya'], // Uyluk Germe Ameliyatı Antalya
+  ['kalca-kaldirma-protezi-antalya', 'buttock-lift-implants-antalya'], // Kalça Kaldırma Protezi Antalya
+  ['ayak-ve-ayak-bilegi-estetigi-antalya', 'foot-and-ankle-aesthetics-antalya'], // Ayak ve Ayak Bileği Estetiği Antalya
+  ['diz-kapagi-estetigi-antalya', 'knee-aesthetics-antalya'], // Diz Kapağı Estetiği Antalya
+];
 
-  // İngilizce -> Türkçe (ters mapping)
-  'rhinoplasty': 'burun-estetigi',
-  'non-surgical-rhinoplasty-antalya': 'ameliyatsiz-burun-estetigi-antalya',
-  'primary-rhinoplasty-antalya': 'primer-rinoplasti-antalya',
-  'secondary-and-tertiary-rhinoplasty-antalya': 'sekonder-ve-tersiyer-rinoplasti-antalya',
-  'antalya-deviation-and-concha-treatment': 'antalya-deviasyon-ve-konka-tedavisi',
+export const surgerySlugMapping = Object.fromEntries(
+  surgerySlugPairs.flatMap(([tr, en]) => [[tr, en], [en, tr]])
+);
 
-  'breast-surgery-in-turkey': 'antalya-meme-estetigi',
-  'breast-asymmetry-antalya': 'meme-asimetrisi-antalya',
-  'breast-augmentation-antalya': 'meme-buyutme-antalya',
-  'breast-augmentation-and-lift-turkey': 'meme-buyutme-ve-diklestirme-antalya',
-  'breast-lift-without-implants-antalya': 'protezsiz-meme-diklestirme-antalya',
-  'breast-reduction-antalya': 'meme-kucultme-antalya',
-  'gynecomastia-surgery-antalya': 'jinekomasti-erkek-meme-kucultme-antalya',
+export const trSurgerySlugs = new Set(surgerySlugPairs.map(([tr]) => tr));
+export const enSurgerySlugs = new Set(surgerySlugPairs.map(([, en]) => en));
 
-  'tickle-liposuction': 'tickle-liposuction',
-  'tickle-liposuction-process': 'tickle-liposuction-sureci',
-  'how-is-tickle-liposuction-performed': 'tickle-liposuction-nasil-yapilir',
-
-  'facial-aesthetics': 'yuz-estetigi',
-  'deep-plane-facelift-turkey': 'derin-plan-yuz-germe-antalya',
-  'endoscopic-brow-lift-turkey': 'endoskopik-kas-kaldirma-antalya',
-  'temporal-lift-surgery-antalya': 'temporal-lift-ve-sakak-germe-antalya',
-  'subperiosteal-midface-lift-turkey': 'orta-yuz-kaldirma-antalya',
-  'eyelid-surgery-antalya': 'goz-kapagi-estetigi-antalya',
-  'facial-fat-transfer-injections': 'yuz-yag-enjeksiyonu-antalya',
-  'prominent-ears-surgery-antalya': 'antalyada-kepce-kulak-estetigi-otoplasti',
-  'medpor-chin-implants-turkey': 'medpor-cene-implantlari-antalya',
-
-  'body-aesthetics': 'vucut-estetigi',
-  'liposuction-fat-removal-antalya': 'liposuction-yag-alma-antalya',
-  'tummy-tuck-surgery-antalya': 'karin-germe-ameliyati-antalya',
-  'fat-injections-antalya': 'yag-enjeksiyonlari-antalya',
-  'mini-tummy-tuck-antalya': 'mini-karin-germe-antalya',
-  'circumferential-tummy-tuck-antalya': 'cevresel-karin-germe-antalya',
-  'arm-lift-surgery-antalya': 'kol-germe-ameliyati-antalya',
-  'thigh-lift-surgery-antalya': 'uyluk-germe-ameliyati-antalya',
-  'buttock-lift-implants-antalya': 'kalca-kaldirma-protezi-antalya',
-  'foot-and-ankle-aesthetics-antalya': 'ayak-ve-ayak-bilegi-estetigi-antalya',
-  'knee-aesthetics-antalya': 'diz-kapagi-estetigi-antalya'
+// Slug'ı hedef dilin slug'ına çevirir. Zaten o dildeyse olduğu gibi bırakır;
+// böylece URL her zaman önceden üretilmiş (prerendered) yola denk gelir.
+export const localizeSurgerySlug = (slug, locale) => {
+  const alreadyInLocale = locale === 'en' ? enSurgerySlugs.has(slug) : trSurgerySlugs.has(slug);
+  if (alreadyInLocale) return slug;
+  return surgerySlugMapping[slug] || slug;
 };
 
 export const translateSurgerySlug = (slug, fromLang, toLang) => {
   if (fromLang === toLang) return slug;
-  
-  if (fromLang === 'tr' && toLang === 'en') {
-    return surgerySlugMapping[slug] || slug;
-  } else if (fromLang === 'en' && toLang === 'tr') {
-    // Ters mapping için
-    const reverseMapping = {};
-    Object.entries(surgerySlugMapping).forEach(([key, value]) => {
-      reverseMapping[value] = key;
-    });
-    return reverseMapping[slug] || slug;
-  }
-  
-  return slug;
+  return localizeSurgerySlug(slug, toLang);
 };

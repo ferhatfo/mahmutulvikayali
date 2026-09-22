@@ -2,7 +2,7 @@
 import { NextResponse } from 'next/server';
 import { isValidBlogSlug, translateBlogSlug, blogSlugMapping } from './utils/blogSlugMapping';
 // Slug eşleşmeleri tek yerden okunur (public/locales/*/services.json içindeki slug alanlarıyla birebir)
-import { surgerySlugMapping } from './utils/surgerySlugMapping';
+import { localizeSurgerySlug } from './utils/surgerySlugMapping';
 
 export function middleware(request) {
   const { pathname } = request.nextUrl;
@@ -40,8 +40,10 @@ export function middleware(request) {
     
     console.log(`🔪 Ameliyat middleware: ${pathname}, slug: ${slug}`);
 
-    // Slug'ı çevir
-    const translatedSlug = surgerySlugMapping[slug] || slug;
+    // Slug'ı URL'in diline göre normalize et. Eskiden koşulsuz karşı dile
+    // çevriliyordu; bu yüzden TR adresler "tr locale + en slug" gibi hiç
+    // üretilmemiş bir kombinasyona düşüp her istekte sunucuda render ediliyordu.
+    const translatedSlug = localizeSurgerySlug(slug, isEnglish ? 'en' : 'tr');
     
     const url = request.nextUrl.clone();
     
@@ -64,18 +66,17 @@ export function middleware(request) {
     
     console.log(`🔪 Surgeries middleware: ${pathname}, slug: ${slug}`);
 
-    // Slug'ı çevir (ters mapping)
-    const translatedSlug = Object.entries(surgerySlugMapping).find(([key, value]) => value === slug)?.[0] || slug;
+    // Burada da slug URL'in diline göre normalize edilir
+    const translatedSlug = localizeSurgerySlug(slug, isEnglish ? 'en' : 'tr');
     
     const url = request.nextUrl.clone();
     
-    if (isEnglish) {
-      url.pathname = `/en/surgeries/${slug}`;
-      console.log(`🔄 Surgeries rewrite: /en/surgeries/${slug} -> /en/surgeries/${slug} (original: ${translatedSlug})`);
-    } else {
-      url.pathname = `/surgeries/${slug}`;
-      console.log(`🔄 Surgeries rewrite: /surgeries/${slug} -> /surgeries/${slug} (original: ${translatedSlug})`);
+    if (translatedSlug === slug) {
+      return NextResponse.next();
     }
+
+    url.pathname = isEnglish ? `/en/surgeries/${translatedSlug}` : `/surgeries/${translatedSlug}`;
+    console.log(`🔄 Surgeries rewrite: ${pathname} -> ${url.pathname}`);
     
     return NextResponse.rewrite(url);
   }
