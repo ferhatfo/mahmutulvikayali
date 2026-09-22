@@ -5,8 +5,9 @@ import Image from "next/image";
 import Button from '@/components/atoms/Button';
 import { FaArrowRight } from 'react-icons/fa';
 import { useTranslation } from 'next-i18next';
-import { slugify } from '@/utils/slugify';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { surgeryPath, DEFAULT_LOCALE } from '@/utils/siteConfig';
 
 export default function ServicesSection() {
   const [activeService, setActiveService] = useState(0);
@@ -15,6 +16,8 @@ export default function ServicesSection() {
   const observerRef = useRef(null);
 
   const { t } = useTranslation('services');
+  const { locale } = useRouter();
+  const currentLocale = locale || DEFAULT_LOCALE;
   
   // Translation'dan tüm verileri al
   const sectionData = t('sectionData', { returnObjects: true });
@@ -159,7 +162,7 @@ export default function ServicesSection() {
                     {service.subServices.slice(0, 4).map((subService, subIndex) => (
                       <Link
                         key={subIndex}
-                        href={`/ameliyatlar/${slugify(subService.title)}`}
+                        href={surgeryPath(currentLocale, subService.slug)}
                         className="bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-lg text-xs md:text-sm text-gray-700 hover:text-gray-900 transition-all duration-200 hover:shadow-sm"
                       >
                         {subService.title}
@@ -173,7 +176,7 @@ export default function ServicesSection() {
                   </div>
                 </div>
                 
-                <Link href={`/ameliyatlar/${service.slug}`} className="w-full sm:w-auto">
+                <Link href={surgeryPath(currentLocale, service.slug)} className="w-full sm:w-auto">
                   <Button
                     text={sectionData.buttonText}
                     backgroundColor="#151515"

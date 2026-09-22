@@ -2,13 +2,18 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import services from '@/data/services.json';
+import { useRouter } from 'next/router';
+import { getMainServices } from '@/utils/mainServices';
+import { surgeryPath, DEFAULT_LOCALE } from '@/utils/siteConfig';
 import { FaInstagram, FaLinkedin, FaFacebook, FaYoutube } from 'react-icons/fa';
 import { useTranslation } from 'next-i18next';
 
 const Footer = () => {
   const { t } = useTranslation('footer');
-  const { mainServices } = services;
+  const { locale } = useRouter();
+  const currentLocale = locale || DEFAULT_LOCALE;
+  // Footer her sayfada mount oluyor; hizmet listesi aktif dile göre gelmeli.
+  const mainServices = getMainServices(currentLocale);
 
   return (
     <footer className="py-10 md:py-15 pb-0 md:pb-0 bg-gray-100 rounded-t-[30px]">
@@ -47,7 +52,7 @@ const Footer = () => {
                 {mainServices.map((service, index) => (
                   <li key={index}>
                     <Link 
-                      href={`/ameliyatlar/${service.slug}`} 
+                      href={surgeryPath(currentLocale, service.slug)} 
                       className='text-[14px] font-normal hover:text-[#151515] transition-colors'
                     >
                       {service.title}
@@ -104,13 +109,25 @@ const Footer = () => {
 };
 
 // Reusable FooterLink component
-const FooterLink = ({ href, text }) => (
-  <Link 
-    href={href} 
-    className="text-[14px] font-normal hover:text-[#151515] transition-colors"
-  >
-    {text}
-  </Link>
-);
+const FooterLink = ({ href, text }) => {
+  // Henüz yayımlanmamış sayfalar (politika bağlantıları) href="" ile geliyordu.
+  // next/link boş href'i mevcut route şablonuna çeviriyor ("/surgeries/[slug]"),
+  // yani her detay sayfasında 404 veren bir bağlantı üretiyordu. Hedefi olmayanı
+  // bağlantı olarak render etmiyoruz.
+  if (!href) {
+    return (
+      <span className="text-[14px] font-normal text-gray-500">{text}</span>
+    );
+  }
+
+  return (
+    <Link 
+      href={href} 
+      className="text-[14px] font-normal hover:text-[#151515] transition-colors"
+    >
+      {text}
+    </Link>
+  );
+};
 
 export default Footer;
