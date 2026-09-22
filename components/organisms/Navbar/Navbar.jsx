@@ -317,14 +317,42 @@ export default function Navbar({ multiPageNavbar }) {
       <div className={`pl-[8%] pr-[3%] py-6 flex justify-between items-center ${multiPageNavbar ? 'border-b' : ''}`}
         style={{ borderColor: multiPageNavbar ? '#aa7cce' : 'transparent' }}>
         
-        <Link href="/" locale={i18n?.language || router.locale}>
-          <Image 
-            src={i18n?.language === 'en' ? "/images/svg/logo-en.svg" : "/images/svg/logo.svg"} 
-            alt="Logo" 
-            width={200} 
-            height={50} 
-          />
-        </Link>
+        <div className="relative flex items-center gap-4">
+          <Link href="/" locale={i18n?.language || router.locale}>
+            <Image
+              src={i18n?.language === 'en' ? "/images/svg/logo-en.svg" : "/images/svg/logo.svg"}
+              alt="Logo"
+              width={200}
+              height={50}
+            />
+          </Link>
+          <a
+            href="https://www.healthturkiye.gov.tr/hospital/ozel-dr.-mahmut-ulvi-kayali-muayenehanesi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden lg:block"
+          >
+            <Image
+              src="/images/svg/heart-of-health1-1.svg"
+              alt="Heart of Health"
+              width={110}
+              height={70}
+            />
+          </a>
+          <a
+            href="https://www.healthturkiye.gov.tr/hospital/ozel-dr.-mahmut-ulvi-kayali-muayenehanesi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="lg:hidden absolute left-0 top-full mt-2"
+          >
+            <Image
+              src="/images/svg/heart-of-health1-1.svg"
+              alt="Heart of Health"
+              width={110}
+              height={70}
+            />
+          </a>
+        </div>
 
         {/* MOBİL MENÜ */}
         <div className="lg:hidden flex items-center">
