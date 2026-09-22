@@ -35,49 +35,46 @@ export function middleware(request) {
   // Dinamik ameliyat sayfaları için rewrite
   const surgeryMatch = pathname.match(/^\/(?:en\/)?ameliyatlar\/(.+)$/);
   if (surgeryMatch) {
-    const isEnglish = pathname.startsWith('/en/');
+    // ÖNEMLİ: Next, i18n dil önekini middleware'e gelmeden ayırıyor; pathname
+    // asla '/en/...' ile başlamaz. Dil bilgisi nextUrl.locale'dedir. Eski
+    // startsWith kontrolü bu yüzden hep false dönüyor, İngilizce istekler
+    // Türkçe sanılıp slug'ları TR'ye çevriliyordu (prod'da 500'ün sebebi).
+    const isEnglish = request.nextUrl.locale === 'en';
     const slug = surgeryMatch[1];
-    
-    console.log(`🔪 Ameliyat middleware: ${pathname}, slug: ${slug}`);
 
-    // Slug'ı URL'in diline göre normalize et. Eskiden koşulsuz karşı dile
-    // çevriliyordu; bu yüzden TR adresler "tr locale + en slug" gibi hiç
-    // üretilmemiş bir kombinasyona düşüp her istekte sunucuda render ediliyordu.
+    console.log(`🔪 Ameliyat middleware [${request.nextUrl.locale}]: ${pathname}, slug: ${slug}`);
+
+    // Slug'ı isteğin diline göre normalize et ki adres her zaman prerender
+    // edilmiş sayfaya denk gelsin.
     const translatedSlug = localizeSurgerySlug(slug, isEnglish ? 'en' : 'tr');
-    
+
+    // Dil öneki nextUrl.locale ile taşınır; yola '/en' eklenmez.
     const url = request.nextUrl.clone();
-    
-    if (isEnglish) {
-      url.pathname = `/en/surgeries/${translatedSlug}`;
-      console.log(`🔄 Ameliyat rewrite: /en/ameliyatlar/${slug} -> /en/surgeries/${translatedSlug}`);
-    } else {
-      url.pathname = `/surgeries/${translatedSlug}`;
-      console.log(`🔄 Ameliyat rewrite: /ameliyatlar/${slug} -> /surgeries/${translatedSlug}`);
-    }
-    
+    url.pathname = `/surgeries/${translatedSlug}`;
+    console.log(`🔄 Ameliyat rewrite: ${pathname} -> ${url.pathname}`);
+
     return NextResponse.rewrite(url);
   }
 
   // Dinamik surgeries sayfaları için rewrite
   const surgeriesMatch = pathname.match(/^\/(?:en\/)?surgeries\/(.+)$/);
   if (surgeriesMatch) {
-    const isEnglish = pathname.startsWith('/en/');
+    const isEnglish = request.nextUrl.locale === 'en';
     const slug = surgeriesMatch[1];
-    
-    console.log(`🔪 Surgeries middleware: ${pathname}, slug: ${slug}`);
 
-    // Burada da slug URL'in diline göre normalize edilir
+    console.log(`🔪 Surgeries middleware [${request.nextUrl.locale}]: ${pathname}, slug: ${slug}`);
+
     const translatedSlug = localizeSurgerySlug(slug, isEnglish ? 'en' : 'tr');
-    
-    const url = request.nextUrl.clone();
-    
+
+    // Slug zaten isteğin dilindeyse yola hiç dokunma.
     if (translatedSlug === slug) {
       return NextResponse.next();
     }
 
-    url.pathname = isEnglish ? `/en/surgeries/${translatedSlug}` : `/surgeries/${translatedSlug}`;
+    const url = request.nextUrl.clone();
+    url.pathname = `/surgeries/${translatedSlug}`;
     console.log(`🔄 Surgeries rewrite: ${pathname} -> ${url.pathname}`);
-    
+
     return NextResponse.rewrite(url);
   }
 
